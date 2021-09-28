@@ -2,7 +2,7 @@
 using namespace std;
 
 #define ETAO 2.0  //activation threshold for repulsive potential
-bool shutdown=false; //to close navigation
+
 
 
 //CONSTRUCTOR
@@ -424,11 +424,6 @@ void NAVIGATION::send_art_to_control(){
       _wr_vel_pub.publish(wright);
       _wl_vel_pub.publish(wleft);
       
-      //to shutdown the process
-      if(_goal_index>_des_q.size() && _norm_e<0.1){
-         shutdown=true;
-      }
-
       r.sleep();
    }
 }
