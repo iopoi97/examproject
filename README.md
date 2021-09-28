@@ -12,7 +12,7 @@ The following is a study about computer vision, kinematics, planning algorithms,
  **You are ready to start!!**
 
 ## How to start with a simulation
-Type:
+Open a new terminal tab and type:
 
  1. `roslaunch examproject spawn_my_robot.launch`
  >This will open **Gazebo** with the **my_world** simulation environment and the **my_robot** robot model
