@@ -4,7 +4,7 @@ The following is a study about computer vision, kinematics, planning algorithms,
 ## Getting Started
 
  1. Clone the Repository in the **/src** folder of your **/ros_ws** or **/catkin_ws** directory,
- 2. Clone the **aruco_ros** package from the forked packages to **iopoi97** git user, at https://github.com/iopoi97/aruco_ros.git, or by the main repository https://github.com/pal-robotics/aruco_ros.git from **pal_robotics**, in the **/examproject** directory where you will find also **/examprj**, the pdf report and an explained simulation video,
+ 2. Unzip the **aruco_ros.zip** package in the same position, then if you want cancel the **.zip** file,
  3. Open a terminal in the **/ros_ws** or **/catkin_ws** and type `catkin_make` command,
  >If necessary add also `-DCATKIN_WHITELIST_PACKAGES=examproject` command;
  
