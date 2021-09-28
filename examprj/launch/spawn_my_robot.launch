@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<launch>
+	 <env name="GAZEBO_MODEL_PATH" value="$(find examproject)/models:$(optenv GAZEBO_MODEL_PATH)"/>
+  <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+    <arg name= "x" default= "0.0"/>
+    <arg name= "y" default= "0.0"/>
+    <arg name= "z" default= "0.1"/>
+    <arg name= "R" default= "0.0"/>
+    <arg name= "P" default= "0.0"/>
+    <arg name= "Y" default= "0.0"/>
+    
+    <!-- Launch other relevant files, in robot descriprion. launch I launch joint_states, robot_state and rviz-->
+  <include file="$(find examproject)/launch/robot_description.launch"/>
+
+  <!-- We resume the logic in empty_world.launch -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+  <arg name="world_name" value="$(find examproject)/worlds/my_world.world"/>
+  <!-- then add the custom world-->
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+  </include>
+
+
+<!-- urdf xml robot description loaded on the Parameter Server to launch the robot in the environment-->  
+
+  <param name="robot_description" command="$(find xacro)/xacro '$(find examproject)/urdf/my_robot.xacro'" /> 
+   <!--custom controllers configuration file launch-->
+   <rosparam file ="$(find examproject)/conf/my_robot_controller.yaml" command="load"/>
+
+
+  <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+	args="-urdf -model my_robot -param robot_description -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg R) -P $(arg P) -Y $(arg Y)"/>
+	<!--custom controllers names --> 
+		<node name="paolino_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="joint_state_controller
+		left_wheel_velocity_controller 
+		right_wheel_velocity_controller"/>
+
+
+
+</launch>

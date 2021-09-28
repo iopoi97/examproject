@@ -1,0 +1,14 @@
+material Aruco/qrcode_C
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture qrcode_C.png
+			}
+		}
+	}
+}
+
