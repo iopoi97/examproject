@@ -233,6 +233,7 @@ void NAVIGATION::art_pot(){
    //to pass to the other rooms just at the first sight of the same AR marker the goal index is augmented
    if(_read_marker!=_id_to_search && _read_marker!=0 && des_p!=_base){
       if(!_already_aumented){
+         cout<<"I found this ID, but it wasn't the one: "<<_read_marker<<endl;
          _goal_index++;
          _already_aumented=true;
       }
@@ -240,7 +241,7 @@ void NAVIGATION::art_pot(){
 
    //to move to the base if the user defined marker id is found
    if(_read_marker==_id_to_search && !_already_aumented){
-      cout<<"I found the id: "<<_id_to_search<<endl;
+      cout<<"I found the desired id: "<<_id_to_search<<endl;
       _previous_index=_goal_index;
       _goal_index=3;
       _already_aumented=true;
@@ -334,7 +335,6 @@ void NAVIGATION::art_pot(){
    if(isnan(_sp_xy[1])) _sp_xy[1]=0.0;
 
    _first_artif=true;
-   cout<<"_goal_index"<<_goal_index<<endl;
 }
 
 
