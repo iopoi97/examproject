@@ -219,8 +219,8 @@ void NAVIGATION::art_pot(){
    des_p.y=_des_q[_goal_index].y;
 
    //to go back to the base
-//   if(_goal_index>_des_q.size())
-//      des_p=_base;
+   if(_goal_index>_des_q.size())
+      des_p=_base;
 
    //to move forward in the room in search of the ar marker
    if(_norm_e<0.07 &&_read_marker==0 && des_p!=_base ){
@@ -229,6 +229,7 @@ void NAVIGATION::art_pot(){
       _des_q[_goal_index].y=des_p.y-1.0;
       des_p.y=_des_q[_goal_index].y;
    }
+
 
    //to pass to the other rooms just at the first sight of the same AR marker the goal index is augmented
    if(_read_marker!=_id_to_search && _read_marker!=0 && des_p!=_base){
@@ -315,7 +316,7 @@ void NAVIGATION::art_pot(){
    //local minima check
    if(fabs(f[0]+fr[0])<0.05 && fabs(f[1]+fr[1])<0.05 && U>0.5 && _first_artif){
       _local_minima=true;
-      cout<<"I'm in a local minima"<<endl; 
+      cout<<"I'm in a local minimum"<<endl; 
    }   
    
    //integration
@@ -426,6 +427,7 @@ void NAVIGATION::send_art_to_control(){
       
       r.sleep();
    }
+   cout << "exit!" << endl;
 }
 
 
