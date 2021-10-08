@@ -24,4 +24,5 @@ Open a new terminal tab and type:
  5. You will be asked to insert an ID to search among 8, 26, 582 
  >**Note**: 8 for full navigation
  6. The navigation will **start**
+ >**Note**: if you want also run the room mapping start also the gmapping node with `roslaunch examproject gmapping.launch`
 
